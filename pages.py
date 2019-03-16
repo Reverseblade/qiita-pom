@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from selenium.webdriver.common.keys import Keys
-
 from Locators import SearchPageLocator
 from Locators import ResultPageLocator
+
+from elements import InputElement
 
 
 class BasePage:
@@ -25,10 +25,13 @@ class SearchPage(BasePage):
         url = 'https://www.google.com/'
         super().__init__(driver=driver, url=url)
 
-    def search(self, keyword):
+    @property
+    def search_box(self):
         locator = SearchPageLocator.search_box
-        search_box = self.driver.find_element(*locator)
-        search_box.send_keys(keyword + Keys.ENTER)
+        return InputElement(
+            driver=self.driver,
+            locator=locator
+        )
 
 
 class ResultPage(BasePage):

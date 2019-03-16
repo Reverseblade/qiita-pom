@@ -9,7 +9,7 @@ driver = webdriver.Chrome('./chromedriver')
 
 search_page = SearchPage(driver)
 search_page.open()
-search_page.search('ブラウザ自動化ツール')
+search_page.search_box.search('ブラウザ自動化ツール')
 
 result_page = ResultPage(search_page.driver)
 print(result_page.get_result_stats())
